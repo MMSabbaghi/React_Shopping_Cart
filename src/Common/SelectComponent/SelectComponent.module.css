@@ -1,0 +1,18 @@
+.select {
+  width: 65%;
+  padding: 0px 5px;
+}
+
+.select_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
+@media screen and (max-width: 480px) {
+  .select_container {
+    width: 50%;
+    font-size: 12px;
+  }
+}

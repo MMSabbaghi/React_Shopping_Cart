@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10%;
+  background-color: rgb(156, 69, 238);
+  color: rgb(250, 239, 239);
+}
+
+.basket_count {
+  background-color: rgb(247, 96, 126);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: -5px;
+  margin-left: -6px;
+}

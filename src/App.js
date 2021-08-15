@@ -1,37 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import ProductList from "./Components/ProductList/ProductList";
+import Navbar from "./Components/NavBar/Navbar";
+import ProductsProvider from "./Components/Providers/ProductsProvider";
+import FilterProducts from "./Components/FilterProducts/FilterProducts";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            Navbar
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <ProductsProvider>
+      <Navbar />
+      <div className="container">
+        <FilterProducts />
+        <ProductList />
+      </div>
+    </ProductsProvider>
   );
-}
+};
 
 export default App;

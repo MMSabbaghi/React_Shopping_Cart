@@ -1,0 +1,25 @@
+.filter_box,
+.search_bar {
+  border: #6d28d9 solid 1px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.filter_box {
+  padding: 5px 10px;
+  justify-content: space-between;
+}
+
+.search_bar {
+  padding: 5px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    display: none;
+  }
+}

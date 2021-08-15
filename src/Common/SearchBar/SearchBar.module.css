@@ -1,0 +1,16 @@
+.search_bar input {
+  font-size: inherit;
+  font-family: inherit;
+  width: 60%;
+  min-height: 40px;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  border: #ddd solid 1px;
+  margin: 0px 5px;
+  color: rgb(118, 59, 177);
+}
+
+.search_bar input:focus {
+  border: #2684ff solid 1px;
+}
