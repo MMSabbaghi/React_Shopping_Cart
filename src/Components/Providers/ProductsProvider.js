@@ -1,10 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { dbProducts } from "../../Db/DbProducts";
-import _ from "lodash";
 const productsContext = React.createContext();
 const productsContextDispatcher = React.createContext();
-
-const initialState = dbProducts;
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -35,32 +32,13 @@ const reducer = (state, action) => {
       return state.filter((p) => p.id !== action.value);
     }
 
-    case "filterBySize": {
-      if (action.value === "") {
-        return initialState;
-      }
-      return initialState.filter(
-        (p) => p.availableSizes.indexOf(action.value) >= 0
-      );
-    }
-
-    case "searchProducts": {
-      return state.filter(
-        (p) => p.title.toLowerCase().indexOf(action.value.toLowerCase()) >= 0
-      );
-    }
-
-    case "sortProducts": {
-      return _.orderBy(state, action.value, "asc");
-    }
-
     default:
       return state;
   }
 };
 
 const ProductsProvider = ({ children }) => {
-  const [products, dispatch] = useReducer(reducer, initialState);
+  const [products, dispatch] = useReducer(reducer, dbProducts);
 
   return (
     <productsContext.Provider value={products}>

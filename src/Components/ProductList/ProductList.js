@@ -1,19 +1,38 @@
-import { useProducts, useProductsActions } from "../Providers/ProductsProvider";
+import { useProductsActions } from "../Providers/ProductsProvider";
 import Product from "../Product/Product";
+import FilterProducts from "../FilterProducts/FilterProducts";
 import styles from "./ProductList.module.css";
+import { useState } from "react";
+import { useProducts } from "../Providers/ProductsProvider";
 
 const ProductList = () => {
-  const products = useProducts();
   const dispatch = useProductsActions();
+  const products = useProducts();
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  if (!products.length) {
-    return <h4> No products found! </h4>;
+  const renderFilterProducts = () => {
+    return (
+      <FilterProducts
+        products={products}
+        setFilteredProducts={setFilteredProducts}
+      />
+    );
+  };
+
+  if (!filteredProducts.length) {
+    return (
+      <>
+        {renderFilterProducts()}
+        <h4> No products found! </h4>
+      </>
+    );
   }
 
   return (
     <>
+      {renderFilterProducts()}
       <div className={styles.productList}>
-        {products.map((p, index) => {
+        {filteredProducts.map((p, index) => {
           return (
             <Product
               productIndex={index + 1}

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useProductsActions } from "../Providers/ProductsProvider";
+import { useCallback, useEffect, useState } from "react";
+import _ from "lodash";
 import styles from "./FilterProduts.module.css";
 import SearchBar from "../../Common/SearchBar/SearchBar";
 import SelectComponent from "../../Common/SelectComponent/SelectComponent";
 
-const FilterProducts = () => {
+const FilterProducts = ({ products, setFilteredProducts }) => {
   const [sort, setSort] = useState({ value: "", label: "..." });
-  const [size, setsize] = useState({ value: "", label: "All Sizes" });
-  const dispatch = useProductsActions();
+  const [size, setSize] = useState({ value: "", label: "All Sizes" });
+  const [query, setQuery] = useState("");
 
   const sizeOptions = [
     { value: "", label: "All Sizes" },
@@ -24,29 +24,52 @@ const FilterProducts = () => {
     { value: "title", label: "Name" },
   ];
 
-  const sortHandler = (selectedValue) => {
-    dispatch({ type: "sortProducts", value: selectedValue.value });
-    setSort(selectedValue);
-  };
+  const filterBySize = useCallback(
+    (products) => {
+      if (size.value === "") {
+        return products;
+      }
+      return products.filter((p) => p.availableSizes.indexOf(size.value) >= 0);
+    },
+    [size]
+  );
 
-  const changeSizeHandler = (selectedValue) => {
-    dispatch({ type: "filterBySize", value: selectedValue.value });
-    setsize(selectedValue);
-    //If the select element for sorting has a value , sorting is also performed by that value
-    sortHandler(sort);
-  };
+  const searchProducts = useCallback(
+    (products) => {
+      return products.filter(
+        (p) => p.title.toLowerCase().indexOf(query.toLowerCase()) >= 0
+      );
+    },
+    [query]
+  );
 
-  const searchHandler = (e) => {
-    //Apply filters
-    changeSizeHandler(size);
+  const sortProducts = useCallback(
+    (products) => {
+      return _.orderBy(products, sort.value, "asc");
+    },
+    [sort]
+  );
 
-    dispatch({ type: "searchProducts", value: e.target.value });
-  };
+  const filterProducts = useCallback(() => {
+    let filteredProduts = [...products];
+    filteredProduts = filterBySize(filteredProduts);
+    filteredProduts = searchProducts(filteredProduts);
+    filteredProduts = sortProducts(filteredProduts);
+
+    return filteredProduts;
+  }, [products, filterBySize, searchProducts, sortProducts]);
+
+  useEffect(() => {
+    setFilteredProducts(filterProducts(products));
+  }, [size, sort, query, products, filterProducts, setFilteredProducts]);
 
   return (
     <>
       <div className={styles.search_bar}>
-        <SearchBar onInputChange={searchHandler} />
+        <SearchBar
+          onInputChange={(e) => setQuery(e.target.value)}
+          value={query}
+        />
       </div>
 
       <div className={styles.filter_box}>
@@ -54,14 +77,14 @@ const FilterProducts = () => {
         <SelectComponent
           value={sort}
           options={sortOptions}
-          onChange={sortHandler}
+          onChange={(selectedValue) => setSort(selectedValue)}
           label="sort by : "
           className={styles.select}
         />
         <SelectComponent
           value={size}
           options={sizeOptions}
-          onChange={changeSizeHandler}
+          onChange={(selectedValue) => setSize(selectedValue)}
           label="order by :"
           className={styles.select}
         />
@@ -70,4 +93,4 @@ const FilterProducts = () => {
   );
 };
 
-export default React.memo(FilterProducts);
+export default FilterProducts;
