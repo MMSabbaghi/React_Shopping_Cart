@@ -1,8 +1,13 @@
+.search_bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .search_bar input {
   font-size: inherit;
   font-family: inherit;
-  width: 60%;
   min-height: 40px;
+  width: 65%;
   outline: none;
   padding: 5px;
   border-radius: 5px;
@@ -13,4 +18,8 @@
 
 .search_bar input:focus {
   border: #2684ff solid 1px;
+}
+
+.search_bar span {
+  white-space: nowrap;
 }

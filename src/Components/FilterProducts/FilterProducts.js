@@ -5,9 +5,11 @@ import SearchBar from "../../Common/SearchBar/SearchBar";
 import SelectComponent from "../../Common/SelectComponent/SelectComponent";
 
 const FilterProducts = ({ products, setFilteredProducts }) => {
-  const [sort, setSort] = useState({ value: "", label: "..." });
-  const [size, setSize] = useState({ value: "", label: "All Sizes" });
-  const [query, setQuery] = useState("");
+  const [filterProps, setFilterProps] = useState({
+    sort: { value: "", label: "..." },
+    size: { value: "", label: "All Sizes" },
+    query: "",
+  });
 
   const sizeOptions = [
     { value: "", label: "All Sizes" },
@@ -26,28 +28,30 @@ const FilterProducts = ({ products, setFilteredProducts }) => {
 
   const filterBySize = useCallback(
     (products) => {
+      const size = filterProps.size;
       if (size.value === "") {
         return products;
       }
       return products.filter((p) => p.availableSizes.indexOf(size.value) >= 0);
     },
-    [size]
+    [filterProps]
   );
 
   const searchProducts = useCallback(
     (products) => {
       return products.filter(
-        (p) => p.title.toLowerCase().indexOf(query.toLowerCase()) >= 0
+        (p) =>
+          p.title.toLowerCase().indexOf(filterProps.query.toLowerCase()) >= 0
       );
     },
-    [query]
+    [filterProps]
   );
 
   const sortProducts = useCallback(
     (products) => {
-      return _.orderBy(products, sort.value, "asc");
+      return _.orderBy(products, filterProps.sort.value, "asc");
     },
-    [sort]
+    [filterProps]
   );
 
   const filterProducts = useCallback(() => {
@@ -61,32 +65,33 @@ const FilterProducts = ({ products, setFilteredProducts }) => {
 
   useEffect(() => {
     setFilteredProducts(filterProducts(products));
-  }, [size, sort, query, products, filterProducts, setFilteredProducts]);
+  }, [filterProps, products, filterProducts, setFilteredProducts]);
+
+  const changeHandler = (name, value) => {
+    setFilterProps({ ...filterProps, [name]: value });
+  };
 
   return (
     <>
-      <div className={styles.search_bar}>
-        <SearchBar
-          onInputChange={(e) => setQuery(e.target.value)}
-          value={query}
-        />
-      </div>
-
       <div className={styles.filter_box}>
-        <span className={styles.title}> Filter Products : </span>
-        <SelectComponent
-          value={sort}
-          options={sortOptions}
-          onChange={(selectedValue) => setSort(selectedValue)}
-          label="sort by : "
-          className={styles.select}
+        <SearchBar
+          onInputChange={(e) => changeHandler("query", e.target.value)}
+          value={filterProps.query}
+          className={styles.filter_box_section}
         />
         <SelectComponent
-          value={size}
+          value={filterProps.sort}
+          options={sortOptions}
+          onChange={(selectedValue) => changeHandler("sort", selectedValue)}
+          label="sort by : "
+          className={styles.filter_box_section}
+        />
+        <SelectComponent
+          value={filterProps.size}
           options={sizeOptions}
-          onChange={(selectedValue) => setSize(selectedValue)}
+          onChange={(selectedValue) => changeHandler("size", selectedValue)}
           label="order by :"
-          className={styles.select}
+          className={styles.filter_box_section}
         />
       </div>
     </>

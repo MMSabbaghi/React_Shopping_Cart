@@ -7,12 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40%;
 }
 
-@media screen and (max-width: 480px) {
-  .select_container {
-    width: 50%;
-    font-size: 12px;
-  }
+.select_container span {
+  white-space: nowrap;
 }

@@ -1,8 +1,8 @@
 import styles from "./SearchBar.module.css";
 
-const SearchBar = ({ onInputChange, value }) => {
+const SearchBar = ({ onInputChange, value, className }) => {
   return (
-    <div className={styles.search_bar}>
+    <div className={`${styles.search_bar} ${className ? className : ""}`}>
       <span> Search For : </span>
       <input
         type="text"

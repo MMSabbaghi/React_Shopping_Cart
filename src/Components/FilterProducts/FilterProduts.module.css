@@ -9,17 +9,25 @@
 }
 
 .filter_box {
+  background-color: #fff;
   padding: 5px 10px;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.search_bar {
-  padding: 5px;
-  justify-content: center;
+.filter_box_section {
+  width: 33%;
 }
 
 @media screen and (max-width: 768px) {
-  .title {
-    display: none;
+  .filter_box {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter_box_section {
+    width: 100%;
+    margin: 5px 0;
   }
 }
