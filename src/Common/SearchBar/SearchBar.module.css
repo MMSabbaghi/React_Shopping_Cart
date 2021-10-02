@@ -4,10 +4,8 @@
   justify-content: center;
 }
 .search_bar input {
-  font-size: inherit;
-  font-family: inherit;
-  min-height: 40px;
-  width: 65%;
+  height: 40px;
+  width: 100%;
   outline: none;
   padding: 5px;
   border-radius: 5px;

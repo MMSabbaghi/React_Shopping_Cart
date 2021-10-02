@@ -21,3 +21,9 @@
   margin-left: -6px;
   position: absolute;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+  }
+}

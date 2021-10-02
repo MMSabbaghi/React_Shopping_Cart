@@ -12,10 +12,11 @@
 }
 
 .filter_box_section {
-  width: 33%;
+  width: 30%;
+  margin: 0 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
   .filter_box {
     flex-direction: column;
     justify-content: center;
