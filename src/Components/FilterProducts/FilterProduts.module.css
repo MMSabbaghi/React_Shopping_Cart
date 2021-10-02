@@ -1,18 +1,14 @@
-.filter_box,
-.search_bar {
-  border: #6d28d9 solid 1px;
+.filter_box {
+  width: 100%;
   display: flex;
   align-items: center;
-  border-radius: 5px;
-  margin: 15px 0;
-  width: 100%;
-}
-
-.filter_box {
-  background-color: #fff;
-  padding: 5px 10px;
   justify-content: space-between;
   flex-wrap: wrap;
+  background-color: #fff;
+  border: #6d28d9 solid 1px;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 5px 10px;
 }
 
 .filter_box_section {

@@ -10,7 +10,7 @@ const ProductList = () => {
   const products = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const renderFilterProducts = () => {
+  const renderFilteredProducts = () => {
     return (
       <FilterProducts
         products={products}
@@ -22,7 +22,7 @@ const ProductList = () => {
   if (!filteredProducts.length) {
     return (
       <>
-        {renderFilterProducts()}
+        {renderFilteredProducts()}
         <h4> No products found! </h4>
       </>
     );
@@ -30,12 +30,11 @@ const ProductList = () => {
 
   return (
     <>
-      {renderFilterProducts()}
+      {renderFilteredProducts()}
       <div className={styles.productList}>
-        {filteredProducts.map((p, index) => {
+        {filteredProducts.map((p) => {
           return (
             <Product
-              productIndex={index + 1}
               product={p}
               key={p.id}
               onIncrement={() =>

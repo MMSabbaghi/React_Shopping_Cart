@@ -1,6 +1,6 @@
 .productList {
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
 }
