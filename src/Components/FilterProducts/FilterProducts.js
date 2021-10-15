@@ -77,21 +77,18 @@ const FilterProducts = ({ products, setFilteredProducts }) => {
         <SearchBar
           onInputChange={(e) => changeHandler("query", e.target.value)}
           value={filterProps.query}
-          className={styles.filter_box_section}
         />
         <SelectComponent
           value={filterProps.sort}
           options={sortOptions}
           onChange={(selectedValue) => changeHandler("sort", selectedValue)}
           label="sort by : "
-          className={styles.filter_box_section}
         />
         <SelectComponent
           value={filterProps.size}
           options={sizeOptions}
           onChange={(selectedValue) => changeHandler("size", selectedValue)}
           label="order by :"
-          className={styles.filter_box_section}
         />
       </div>
     </>
