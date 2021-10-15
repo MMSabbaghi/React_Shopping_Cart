@@ -44,11 +44,3 @@
   background-color: #eee;
   border-radius: 5px;
 }
-
-@media screen and (max-width: 680px) {
-  .product {
-    margin-right: 0;
-    margin-left: 0;
-    width: 100%;
-  }
-}

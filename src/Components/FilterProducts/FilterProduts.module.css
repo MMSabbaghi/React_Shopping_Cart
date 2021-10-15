@@ -1,6 +1,6 @@
 .filter_box {
   display: grid;
-  grid-template-columns : 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   background-color: #fff;
   border: #6d28d9 solid 1px;
@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 950px) {
   .filter_box {
-    grid-template-columns : 1fr;
+    grid-template-columns: 1fr;
   }
 }
