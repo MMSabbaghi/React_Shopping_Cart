@@ -1,6 +1,5 @@
 .filter_box {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 10px;
   background-color: #fff;
   border: #6d28d9 solid 1px;
@@ -9,8 +8,12 @@
   padding: 5px 10px;
 }
 
+.filter_box>*{
+  flex-basis: 100%;
+}
+
 @media screen and (max-width: 950px) {
   .filter_box {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 }
