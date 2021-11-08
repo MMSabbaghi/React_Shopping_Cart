@@ -43,7 +43,6 @@ const ProductList = () => {
               onDecrement={() =>
                 dispatch({ type: "decrementQuantity", value: p.id })
               }
-              onRemove={() => dispatch({ type: "removeProduct", value: p.id })}
             />
           );
         })}

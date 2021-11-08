@@ -28,11 +28,11 @@
   background-color: rgb(146, 42, 243);
   border-radius: 5px;
   border: none;
-  padding: 1vh;
   outline: none;
   color: #fff;
-  padding: 5px 5px;
-  margin-left: 3px;
+  padding: 5px;
+  margin: 0 2px;
+  min-width: 20px;
 }
 
 .bottom {

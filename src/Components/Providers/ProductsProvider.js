@@ -19,17 +19,11 @@ const reducer = (state, action) => {
       let product = { ...state[index] };
       let newState = [...state];
 
-      if (product.quantity > 1) {
+      if (product.quantity > 0) {
         product.quantity--;
         newState[index] = product;
-      } else {
-        newState = state.filter((p) => p.id !== action.value);
       }
       return newState;
-    }
-
-    case "removeProduct": {
-      return state.filter((p) => p.id !== action.value);
     }
 
     default:
